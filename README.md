@@ -1,1 +1,1 @@
-`meteor add react-meteor-data twbs:bootstrap fourseven:scss fortawesome:fontawesome
+`meteor add react-meteor-data twbs:bootstrap fourseven:scss fortawesome:fontawesome`
