@@ -67,7 +67,6 @@ package-version-parser@3.0.9
 promise@0.7.3
 random@1.0.10
 rate-limit@1.0.5
-react-meteor-data@0.2.9
 reactive-var@1.0.10
 reload@1.1.10
 retry@1.0.8
@@ -83,7 +82,6 @@ standard-minifier-css@1.0.8
 standard-minifier-js@1.0.8
 templating@1.1.14
 templating-tools@1.0.4
-tmeasday:check-npm-versions@0.2.0
 tracker@1.0.15
 twbs:bootstrap@3.3.6
 ui@1.0.11
