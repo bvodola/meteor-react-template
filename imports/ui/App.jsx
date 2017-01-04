@@ -5,19 +5,19 @@ import Loading from './layouts/Loading.jsx';
 import Main from './layouts/Main.jsx';
 import Home from './components/Home.jsx';
 
-
 const Routes = (
-	<Router history={browserHistory}>
+	<Route>
 		<Route component={Main}>
 			<Route path='/' component={Home} />
 		</Route>
-	</Router>
+	</Route>
 );
 
 class App extends Component {
 	render() {
-		return Routes;
+		return (<Router history={browserHistory} routes={Routes} />);
 	}
 }
 
 export default App;
+export { Routes };
