@@ -47,6 +47,7 @@ launch-screen@1.0.12
 livedata@1.0.18
 localstorage@1.0.11
 logging@1.0.14
+materialize:materialize@0.97.0
 meteor@1.1.16
 meteor-base@1.0.4
 meteorhacks:inject-initial@1.0.4
@@ -83,7 +84,6 @@ standard-minifier-js@1.0.8
 templating@1.1.14
 templating-tools@1.0.4
 tracker@1.0.15
-twbs:bootstrap@3.3.6
 ui@1.0.11
 underscore@1.0.9
 url@1.0.10

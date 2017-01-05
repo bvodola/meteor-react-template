@@ -13,14 +13,13 @@ import { AppContainer } from 'react-hot-loader';
 /*
 	To add SSR, uncomment the line above and add the react-router-ssr package
 	with the command: meteor add reactrouter:react-router-ssr.
-	Use this before launching your app in production
+	Use this before launching your app to production
 */
 
 Meteor.startup(() => {
 
 	let enableSSR = false;
 	let enableHMR = !enableSSR;
-
 
 	// If the Hot Module Replacement is enabled
 	if(enableHMR) {
@@ -38,12 +37,12 @@ Meteor.startup(() => {
 			});
 		}
 
-		}
+	}
 
-		// If the Hot Module Replacement is not enabled
-		else {
-			ReactRouterSSR.Run(Routes, {rootElement: 'app'});
-			render(<App enableSSR={enableSSR} />, document.getElementById('app'));
-		}
+	// If the Hot Module Replacement is not enabled
+	else {
+		ReactRouterSSR.Run(Routes, {rootElement: 'app'});
+
+	}
 
 });

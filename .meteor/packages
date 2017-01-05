@@ -18,8 +18,8 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
-twbs:bootstrap
 fourseven:scss
 fortawesome:fontawesome
 gadicc:ecmascript-hot@=2.0.0-beta.6
 accounts-password
+materialize:materialize@=0.97.0
