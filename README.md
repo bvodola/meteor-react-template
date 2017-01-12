@@ -6,7 +6,7 @@ Meteor Version:
 - 1.3.5.1
 
 Meteor Packages:
-- twbs:bootstrap
+- materialize:materialize
 - fourseven:scss
 - fortawesome:fontawesome
 - gadicc:ecmascript-hot@=2.0.0-beta.6
@@ -18,7 +18,7 @@ NPM Packages:
 - react-addons-pure-render-mixin: ^15.2.1
 - react-dom: ^15.2.1
 - react-router: ^2.6.0
-- react-hot-loader: ^3.0.0-beta.4
+- react-hot-loader: ^3.0.0-beta.6
 - react-komposer: ^1.13.1
 - babel-runtime: ^6.11.6
 - redbox-react: ^1.3.1
@@ -29,6 +29,11 @@ NPM Packages:
 
 `cd proj-name`
 
-`npm install`
+`meteor npm install`
 
 `meteor`
+
+##Observations
+
+In case you run through any *Unable to Watch* problems, run
+`echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`
