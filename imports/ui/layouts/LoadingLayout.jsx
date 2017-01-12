@@ -1,5 +1,4 @@
 import React from 'react';
-import { setDefaultLoadingComponent } from 'react-komposer';
 import './sass/loading.sass';
 
 const Loading = () => (
@@ -9,5 +8,3 @@ const Loading = () => (
 		<div className="bounce3"></div>
 	</div>
 );
-
-setDefaultLoadingComponent(Loading);

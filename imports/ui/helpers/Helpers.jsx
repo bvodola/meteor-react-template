@@ -8,7 +8,7 @@ class Repeatable extends Component {
 
 	constructor(props) {
 		super(props);
-		
+
 		// Sets the initial state
 		// count: Number of initial statements
 		this.state = {
@@ -35,7 +35,7 @@ class Repeatable extends Component {
 
 		// Iterating through the children of the repeatable component
 		return React.Children.map(children, (child, j) => {
-			
+
 			// First, we check if this child is NOT the defaultRef child
 			if(typeof child.props.defaultRef === 'undefined') {
 
@@ -80,14 +80,14 @@ class Repeatable extends Component {
 
 // Props:
 // - defaultValue
-// - placeholder
-// - optionVal
-// - data
+// - placeholder: the placeholder for the Select, in this case a disabled first option
+// - valueProperty: the name of the data object property that will become the value of the selet options
+// - data: populates the select
 // - onChange
 // - style
 
 class DataSelect extends Component {
-	
+
 	constructor(props) {
 		super(props);
 
@@ -105,10 +105,10 @@ class DataSelect extends Component {
 	}
 
 	render() {
-		
-		let optionVal = '_id';
+
+		let valueProperty = '_id';
 		let style = {};
-		if(typeof this.props.optionVal !== 'undefined') optionVal = this.props.optionVal
+		if(typeof this.props.valueProperty !== 'undefined') valueProperty = this.props.valueProperty
 		if(typeof this.props.style !== 'undefined') style = this.props.style
 
 		if(this.props.data.length > 0) {
@@ -116,7 +116,7 @@ class DataSelect extends Component {
 				<select style={style} ref="_id" defaultValue={this.props.defaultValue || ''} onChange={this.handleChange.bind(this)}>
 					<option value="" disabled>{this.props.placeholder}</option>
 					{this.props.data.map((obj) => (
-						<option value={obj[optionVal]} key={obj._id}>
+						<option value={obj[valueProperty]} key={obj._id}>
 							{obj.name}
 						</option>
 					))}
@@ -131,6 +131,74 @@ class DataSelect extends Component {
 	}
 }
 
+// ============
+// CheckboxList
+// ============
+
+/*
+	Example:
+	<CheckboxList title='Título' data={[
+			{'_id': '001', 'name': 'Check 1'},
+			{'_id': '002', 'name': 'Check 2'}
+		]}
+	/>
+*/
+
+class CheckboxList extends Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			value: (props.defaultValue || '')
+		}
+	}
+
+	handleChange(event) {
+
+		stateValue = this.state.value;
+		console.log(event);
+
+		this.setState({ value: event.target.value }, function() {
+			if(typeof this.props.onChange === 'function') {
+				this.props.onChange(event);
+			}
+		});
+	}
+
+
+	render() {
+
+		// Setting the valueProperty and style variables
+		let valueProperty = '_id';
+		let style = {};
+		if(typeof this.props.valueProperty !== 'undefined') valueProperty = this.props.valueProperty
+		if(typeof this.props.style !== 'undefined') style = this.props.style
+
+		// Checks if there's data and renders
+		if(typeof this.props.data !== 'undefined' && this.props.data.length > 0) {
+			return(
+				<div>
+					<div className="title">{this.props.title}</div>
+					{this.props.data.map((obj) => (
+						<p key={obj._id}>
+							<input name={obj.name} onChange={this.handleChange.bind(this)} type="checkbox" value={obj[valueProperty]} />
+							<label htmlFor={obj.name}>{obj.name}</label>
+						</p>
+					))}
+				</div>
+			);
+		}
+
+		else {
+			return(
+				<p>Nenhuma opção de {this.props.title} cadastrada.</p>
+			);
+		}
+
+	}
+
+}
 
 // =======
 // Helpers
@@ -153,14 +221,14 @@ class Helpers {
 				} else if(typeof refs[key].props !== 'undefined' && typeof refs[key].props.stateValue !== 'undefined') {
 					if(refs[key].props.stateValue === true)
 						refValues[key] = refs[key].state['value'];
-					else	
+					else
 						refValues[key] = refs[key].state[refs[key].props.stateValue];
 				}
 			}
 		}
 		return refValues;
 	}
-	
+
 	// Merges the obj2 properties into ojb1. Overwrites any property
 	// that may already exist in obj1
 	static push(obj1,obj2) {
@@ -168,7 +236,9 @@ class Helpers {
 		for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
 		for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
 		return obj3;
-	}	
+	}
+
+
 }
 
-export { Repeatable, DataSelect, Helpers };
+export { Repeatable, DataSelect, Helpers, CheckboxList };
