@@ -1,7 +1,7 @@
-#meteor-react-bootstrap-skel
+# meteor-react-bootstrap-skel
 This is a skeleton for meteor+react apps I use frequently.
 
-##Overview
+## Overview
 Meteor Version:
 - 1.3.5.1
 
@@ -23,7 +23,7 @@ NPM Packages:
 - babel-runtime: ^6.11.6
 - redbox-react: ^1.3.1
 
-##Installation
+## Installation
 
 `git clone https://github.com/bvodola/meteor-react-bootstrap-skel.git proj-name`
 
@@ -33,7 +33,7 @@ NPM Packages:
 
 `meteor`
 
-##Observations
+## Observations
 
 In case you run through any *Unable to Watch* problems, run
 `echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`
