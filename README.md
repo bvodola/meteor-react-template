@@ -1,5 +1,5 @@
-# meteor-react-bootstrap-skel
-This is a skeleton for meteor+react apps I use frequently.
+# meteor-react-template
+This is a template for meteor+react apps I use frequently.
 
 ## Overview
 Meteor Version:
