@@ -1,37 +1,30 @@
 import 'react-hot-loader/patch';
-import React from 'react';
+import { AppContainer as HotLoader } from 'react-hot-loader';
+
 import { Meteor } from 'meteor/meteor';
+import React from 'react';
 import { render } from 'react-dom';
-import App, { Routes } from '../imports/ui/App.jsx';
-import { AppContainer } from 'react-hot-loader';
 
-// =====================
-// Server Side Rendering
-// =====================
-// import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr';
+import AppContainer from '../imports/ui/containers/AppContainer.jsx';
 
-/*
-	To add SSR, uncomment the line above and add the react-router-ssr package
-	with the command: meteor add reactrouter:react-router-ssr.
-	Use this before launching your app to production
-*/
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 Meteor.startup(() => {
 
-	let enableSSR = false;
-	let enableHMR = !enableSSR;
+	let enableHMR = true;
 
 	// If the Hot Module Replacement is enabled
 	if(enableHMR) {
-		render(<AppContainer><App /></AppContainer>, document.getElementById('app'));
+		render(<HotLoader><AppContainer /></HotLoader>, document.getElementById('app'));
 
 		if (module.hot) {
-			module.hot.accept('../imports/ui/App.jsx', () => {
-				const NextApp = require('../imports/ui/App.jsx').default;
+			module.hot.accept('../imports/ui/containers/AppContainer.jsx', () => {
+				const NextAppContainer = require('../imports/ui/containers/AppContainer.jsx').default;
 				render(
-					<AppContainer>
-						<NextApp />
-					</AppContainer>,
+					<HotLoader>
+						<NextAppContainer />
+					</HotLoader>,
 					document.getElementById('app')
 				);
 			});
@@ -41,8 +34,7 @@ Meteor.startup(() => {
 
 	// If the Hot Module Replacement is not enabled
 	else {
-		ReactRouterSSR.Run(Routes, {rootElement: 'app'});
-
+		render(<AppContainer />, document.getElementById('app'));
 	}
 
 });

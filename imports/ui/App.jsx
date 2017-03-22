@@ -2,17 +2,14 @@ import React , {Component} from 'react';
 import { Router, Route, browserHistory } from 'react-router'
 
 import Loading from './layouts/LoadingLayout.jsx';
-import Main from './layouts/MainLayout.jsx';
-import HomeContainer from './containers/HomeContainer.jsx';
+import Home from './components/Home.jsx';
 
 // =================
 // Routes Definition
 // =================
 const Routes = (
 	<Route>
-		<Route component={Main}>
-			<Route path='/' component={HomeContainer} />
-		</Route>
+		<Route path='/' component={Home} />
 	</Route>
 );
 
@@ -26,4 +23,3 @@ class App extends Component {
 }
 
 export default App;
-export { Routes };
