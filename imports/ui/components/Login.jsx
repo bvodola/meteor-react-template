@@ -1,4 +1,4 @@
-import { Meteor } from 'meteor/meteor';  
+import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
 import React, { Component } from 'react';
 
@@ -10,7 +10,6 @@ class Login extends Component {
     Accounts.createUser({
       // Puxando valores do formulário
       username: this.username.value,
-      email: this.email.value,
       password: this.password.value
 
       // Verificando possíveis erros no callback
@@ -45,11 +44,6 @@ class Login extends Component {
             {/* Nome de Usuário */}
             <div className="form-group">
               <input type="text" className="form-control" ref={(el) => {this.username = el}} placeholder="Username"/>
-            </div>
-
-            {/* Email */}
-            <div className="form-group">
-              <input type="text" className="form-control" ref={(el) => {this.email = el}} placeholder="Email"/>
             </div>
 
             {/* Senha */}
