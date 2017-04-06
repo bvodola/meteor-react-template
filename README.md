@@ -23,6 +23,11 @@
 
 ## 3. Começando a programar: Fazendo Login
 
+### Rodando o projeto inicial
+
+`meteor npm install`
+`meteor`
+
 ### Criação do `Login Component`:
 Crie um novo arquivo `Login.jsx` dentro de `imports/ui/components/` e insira o conteúdo abaixo.
 
