@@ -29,7 +29,10 @@
 `meteor`
 
 ### Criação do `Login Component`:
-Crie um novo arquivo `Login.jsx` dentro de `imports/ui/components/` e insira o conteúdo abaixo.
+
+Vamos agora criar a tela de Login:
+
+Para isso, crie um novo arquivo `Login.jsx` dentro de `imports/ui/components/` e insira o conteúdo abaixo.
 
 
 ```js
@@ -249,9 +252,16 @@ class App extends Component {
 export default App;
 ```
 
+Neste ponto já podemos criar um usuário e fazer login com ele.
+
 ## 5. Criando e exibindo a tela do Chat
 
+Vamos criar um novo componente, o da tela de Chat. Para isso criamos
+um arquivo `Chat.jsx` dentro de `imports/ui/components/`.
+
 ```js
+//imports/ui/components/Chat.jsx
+
 import React, { Component } from 'react';
 
 class Chat extends Component {
@@ -316,7 +326,11 @@ export default Chat;
 
 ```
 
+E modificaremos novamente o arquivo `App.jsx` para adicionar o componente de chat:
+
 ```js
+// imports/ui/App.jsx
+
 import React , { Component } from 'react';
 import Login from './components/Login.jsx';
 import Chat from './components/Chat.jsx';
@@ -350,6 +364,9 @@ export default App;
 
 ```
 
+Agora, vamos dar uma aparência melhor ao chat com CSS (SASS no caso). Para isso,
+alteramos o arquivo client/sass/main.sass, conforme abaixo:
+
 ```css
 nav
   color: #fff
@@ -369,9 +386,15 @@ nav
   padding-top: 60px
 ```
 
+Neste ponto teremos a tela de Chat já disponível para o usuário logado.
+
 ## 6. Exibindo nome de usuário e no Chat e fazendo logout
 
+Primeiro, vamos passar as informações do usuário logado para o `Chat Component`.
+
 ```js
+// import/ui/App.jsx
+
 import React , { Component } from 'react';
 import Login from './components/Login.jsx';
 import Chat from './components/Chat.jsx';
@@ -404,6 +427,8 @@ class App extends Component {
 export default App;
 
 ```
+
+Agora, vamos modificar o Chat Component para que possamos fazer Logout e exibir o usuário.
 
 ```js
 import { Meteor } from 'meteor/meteor';
@@ -485,14 +510,22 @@ export default Chat;
 
 ## 7. Salvando mensagens enviadas no banco de dados
 
+
+Primeiro, vamos criar uma nova coleção Mongo. Uma coleção no MongoDB
+é (falando grosseiramente) equivalente a uma tabela no MySQL.
+
 ```js
+// imports/api/models.js
+
 import { Mongo } from 'meteor/mongo';
 export const Messages = new Mongo.Collection('messages');
 ```
 
-Criar `NewMessage Component`
+Agora vamos criar o `NewMessage Component`
 
 ```js
+//imports/ui/Components/NewMessage.jsx
+
 import React, { Component } from 'react';
 import { Messages } from '../../api/models.js';
 
@@ -503,7 +536,7 @@ class NewMessage extends Component {
 
     Messages.insert({
       content: this.message.value,
-      user_id: this.props.currentUser._id
+      username: this.props.currentUser.username
     }, (e,id) => {
       if(e) console.log(e);
       else {
@@ -536,7 +569,8 @@ export default NewMessage;
 
 ```
 
-Modificar o `Chat Component`
+Vamos agora modificar o `Chat Component` para que use `NewMessage`.
+
 ```js
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
@@ -611,12 +645,15 @@ Primeiro, criamos a publicação de mensagens.
 Adiciona o texto  abaixo no final do `server/main.js`:
 
 ```js
+// server/main.js
+
 Meteor.publish('messages', () => {
   return Messages.find({});
 });
 ```
 
-Criar `ChatContainer`
+Vamos criar agora o `ChatContainer` para que possa conectar nosso componente Chat
+ao banco de dados
 
 ```js
 import { Meteor } from 'meteor/meteor';
@@ -637,7 +674,7 @@ export default ChatContainer = createContainer(() => {
 
 ```
 
-Modificar App.jsx
+Modificar `App.jsx` para que tenhamos `ChatContainer` em vez de `Chat`
 
 ```js
 import React , { Component } from 'react';
@@ -674,9 +711,67 @@ export default App;
 
 ```
 
-Exibir as mensagens
+Exibir as mensagens: Vamos modificar agora o `Chat.jsx` para que possamos exibir
+as mensagens passadas a ele via Container.
 
 ```js
+import { Meteor } from 'meteor/meteor';
+import React, { Component } from 'react';
+import NewMessage from './NewMessage.jsx'
+
+class Chat extends Component {
+
+  handleLogout() {
+    Meteor.logout((e) => {
+      if(e) console.log(e);
+      else console.log('Logged out');
+    })
+  }
+
+  render() {
+
+    let currentUser = this.props.currentUser;
+    let loading = this.props.loading;
+    let messages = this.props.messages;
+
+    return(
+      <div className="chat">
+
+        <nav>
+          <div className="row">
+            <div className="col-xs-6 username">{currentUser.username}</div>
+            <div className="col-xs-6 logout" onClick={() => this.handleLogout()}>Logout</div>
+
+          </div>
+        </nav>
+
+        <div className="main container">
+
+          <div className="messages row">
+            <div className='col-lg-8 col-lg-offset-2 col-sm-12'>
+              <ul className="list-group">
+
+                {messages.map((message,i) => (
+                  <li className="list-group-item" key={i}>
+                    <h4 className="list-group-item-heading">{message.username}</h4>
+                    <p className="list-group-item-text">{message.content}</p>
+                  </li>
+                ))}
+
+              </ul>
+            </div>
+          </div>
+
+          <NewMessage currentUser={currentUser} />
+
+        </div>
+      </div>
+    )
+  }
+}
+
+export default Chat;
+
 ```
 
 ```js
