@@ -1,24 +1,27 @@
 # meteor-react-meetup
 
-## 1. Concepção das telas do app
+## Pré-requisitos
 
-### Wireframe das telas
+- Meteor: [link para instalar Meteor](https://www.meteor.com/install)
+- Qualquer IDE de sua preferência. (por exemplo: [Atom](https://atom.io/) ou [Sublime](https://www.sublimetext.com/))
 
-### Resumindo: Duas telas
+## 1. Telas do app
+
 1. Login
 2. Chat
 
-## 2. Pré-requisitos
-- git
-- meteor
+## 2. Conceitos Iniciais
 
-## Resumo sobre Meteor e React
-- Explicação rápida sobre as ferramentas.
-- Usaremos um template pronto para agilizar.
-- Vou disponibilizar um tutorial sobre como chegar ao
-template pronto a partir do zero.
+### Resumo sobre Meteor e React
+- Meteor: plataforma para construção de aplicativos web, mobile e desktop, usando JavaScript
 
-## 3. Fazendo Login
+- React: Biblioteca JavaScript para construção de UI
+
+- Usaremos um template pronto para agilizar. [Download do template](https://github.com/bvodola/meteor-react-template/archive/start.zip)
+
+- Futuramente, vou disponibilizar um tutorial sobre como chegar ao template pronto a partir do zero.
+
+## 3. Começando a programar: Fazendo Login
 
 ### Criação do `Login Component`:
 Crie um novo arquivo `Login.jsx` dentro de `imports/ui/components/` e insira o conteúdo abaixo.
