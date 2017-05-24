@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import App, { Routes } from '../imports/ui/App.jsx';
 import { AppContainer } from 'react-hot-loader';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // =====================
 // Server Side Rendering
@@ -17,6 +18,8 @@ import { AppContainer } from 'react-hot-loader';
 */
 
 Meteor.startup(() => {
+	
+	injectTapEventPlugin();
 
 	let enableSSR = false;
 	let enableHMR = !enableSSR;
