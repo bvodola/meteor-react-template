@@ -3,12 +3,10 @@ This is a template for meteor+react apps I use frequently.
 
 ## Overview
 Meteor Version:
-- 1.3.5.1
+- 1.3.5.1 (Meteor 1.4 doesn't work with React Hot Loader)
 
 Meteor Packages:
-- materialize:materialize
 - fourseven:scss
-- fortawesome:fontawesome
 - gadicc:ecmascript-hot@=2.0.0-beta.6
 - accounts-password
 
@@ -19,7 +17,6 @@ NPM Packages:
 - react-dom: ^15.2.1
 - react-router: ^2.6.0
 - react-hot-loader: ^3.0.0-beta.6
-- react-komposer: ^1.13.1
 - babel-runtime: ^6.11.6
 - redbox-react: ^1.3.1
 
